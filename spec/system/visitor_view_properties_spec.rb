@@ -5,12 +5,12 @@ describe 'Visitor visit homepage' do
     #Arrange => Preparar (os dados)
     Property.create({ title: 'Casa com quintal em Copacabana', 
                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3
+                      rooms: 3, parking_slot: true
                     })
 
     Property.create({ title: 'Cobertura em Manaus', 
                       description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5
+                      rooms: 5, parking_slot: false
                     })
 
     #Act => Agir (executar a funcionalidade)
