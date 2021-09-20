@@ -1,0 +1,32 @@
+<div>
+<h1>
+  <%= @property.title %>
+</h1>
+<h2><%= @property.description %></h2>
+<dl>
+  <dt>Quartos:</dt>
+  <dd><%= @property.rooms %></dd>
+  <dt>Banheiros:</dt>
+  <dd><%= @property.bathrooms %></dd>
+
+  <dt>Aceita Pets:</dt>
+  <% if @property.pets? %>
+    <dd>Sim</dd>
+  <% else %>
+    <dd>Não</dd>
+  <% end %>
+
+  <dt>Estacionamento:</dt>
+  <% if @property.parking_slot? %>
+    <dd>Sim</dd>
+  <% else %>
+    <dd>Não</dd>
+  <% end %>
+
+  <dt>Diária:</dt>
+  <dd><%= number_to_currency(@property.daily_rate, unit: 'R$', separator: ',', format: "%u %n") %></dd>
+
+</dl>
+
+</div>
+<%= link_to('Voltar', root_path) %>
