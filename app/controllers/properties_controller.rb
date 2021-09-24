@@ -1,7 +1,6 @@
 class PropertiesController < ApplicationController
   def show
-    id = params[:id]
-    @property = Property.find(id)
+    @property = Property.find(params[:id])
   end
 
   def new
@@ -9,15 +8,19 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    # Strong Parameters
-    p = Property.create(params.require(:property).permit(:title, :description, :rooms, :bathrooms, :pets, :parking_slot, :daily_rate))
+    @property = Property.new(property_params)
+    if @property.save
+      redirect_to @property
+    else
+      render :new
+    end
+  end
 
-    #prop = Property.create(title: params[:property][:title], description: params[:property][:description], 
-    #               rooms: params[:property][:rooms], bathrooms: params[:property][:bathrooms],
-    #               daily_rate: params[:property][:daily_rate], pets: params[:property][:pets],
-    #               parking_slot: params[:property][:parking_slot])
+  private
 
-    redirect_to p
+  def property_params
+    params.require(:property).permit(:title, :description, :rooms, :bathrooms,
+                                     :pets, :parking_slot, :daily_rate)
   end
 end
 
