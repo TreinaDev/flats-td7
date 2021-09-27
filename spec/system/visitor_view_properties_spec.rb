@@ -21,12 +21,12 @@ describe 'Visitor visit homepage' do
 
     #Assert => Garantir (que algo aconteceu ou NAO aconteceu)
     # 2 imoveis -> casa em copacabana; apartamento em manaus
-    expect(page).to have_text("Casa com quintal em Copacabana")
-    expect(page).to have_text("Excelente casa, recém reformada com 2 vagas de garagem")
-    expect(page).to have_text("Quartos: 3")
-    expect(page).to have_text("Cobertura em Manaus")
-    expect(page).to have_text("Cobertura de 300m2, churrasqueira e sauna privativa")
-    expect(page).to have_text("Quartos: 5")
+    expect(page).to have_content("Casa com quintal em Copacabana")
+    expect(page).to have_content("Excelente casa, recém reformada com 2 vagas de garagem")
+    expect(page).to have_content("Quartos: 3")
+    expect(page).to have_content("Cobertura em Manaus")
+    expect(page).to have_content("Cobertura de 300m2, churrasqueira e sauna privativa")
+    expect(page).to have_content("Quartos: 5")
   end
 
   it 'and theres no property available' do
@@ -35,7 +35,7 @@ describe 'Visitor visit homepage' do
     #Act => Agir (executar a funcionalidade)
     visit root_path
     #Assert => Garantir (que algo aconteceu ou NAO aconteceu)
-    expect(page).to have_text("Nenhum imóvel disponível")
+    expect(page).to have_content("Nenhum imóvel disponível")
   end
 
   it 'and view property details' do
@@ -58,14 +58,15 @@ describe 'Visitor visit homepage' do
     click_on 'Casa com quintal em Copacabana'
 
     #Assert => Garantir (que algo aconteceu ou NAO aconteceu)
-    expect(page).not_to have_text('Cobertura de 300m2, churrasqueira e sauna privativa')
-    expect(page).to have_text("Casa com quintal em Copacabana")
-    expect(page).to have_text("Excelente casa, recém reformada com 2 vagas de garagem")
-    expect(page).to have_text("Quartos: 3")
-    expect(page).to have_text("Banheiros: 2")
-    expect(page).to have_text("Aceita Pets: Sim")
-    expect(page).to have_text("Estacionamento: Sim")
-    expect(page).to have_text("Diária: R$ 500,00")
+    expect(page).not_to have_content('Cobertura de 300m2, churrasqueira e sauna privativa')
+    expect(page).to have_content("Casa com quintal em Copacabana")
+    expect(page).to have_content("Excelente casa, recém reformada com 2 vagas de garagem")
+    expect(page).to have_content("Quartos: 3")
+    expect(page).to have_content("Banheiros: 2")
+    expect(page).to have_content("Aceita Pets: Sim")
+    expect(page).to have_content("Estacionamento: Sim")
+    expect(page).to have_content("Diária: R$ 500,00")
+    expect(page).to have_content("Tipo: Casa")
   end
 
   it 'and view property details and return to home page' do
@@ -87,8 +88,8 @@ describe 'Visitor visit homepage' do
 
     #Assert => Garantir (que algo aconteceu ou NAO aconteceu)
     expect(current_path).to eq root_path
-    expect(page).to have_text('Casa com quintal em Copacabana')
-    expect(page).to have_text('Cobertura em Manaus')
+    expect(page).to have_content('Casa com quintal em Copacabana')
+    expect(page).to have_content('Cobertura em Manaus')
   end
 
 end
