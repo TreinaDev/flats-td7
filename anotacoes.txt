@@ -14,3 +14,4 @@ id: titulo  diaria  property_type_id
 1: Casa em copcabana  R$ 500  2
 2: Apartamento em Brasilia  R$ 400  1
 3: Sala na Av Paulista  R$ 1000  4
+
