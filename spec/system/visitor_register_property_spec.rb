@@ -8,6 +8,7 @@ describe 'Visitor register property' do
     #Act
     visit root_path
     click_on 'Cadastrar Imóvel'
+
     fill_in 'Título', with: 'Casa em Florianópolis'
     fill_in 'Descrição', with: 'Ótima casa perto da UFSC'
     fill_in 'Quartos', with: '3'
@@ -16,6 +17,7 @@ describe 'Visitor register property' do
     select 'Casa', from: 'Tipo'
     check 'Aceita Pets'
     check 'Vaga de Estacionamento'
+
     click_on 'Enviar'
 
     #Assert

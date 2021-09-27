@@ -30,6 +30,10 @@
     <%= f.text_field :daily_rate %>
   </div>
   <div>
+    <%= f.label :property_type_id, "Tipo" %>
+    <%= f.collection_select :property_type_id, PropertyType.all, :id, :name, prompt: 'Escolha um tipo' %>
+  </div>
+  <div>
     <%= f.check_box :pets %>
     <%= f.label :pets, 'Aceita Pets' %>
   </div>
