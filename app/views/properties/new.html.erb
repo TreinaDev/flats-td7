@@ -1,4 +1,4 @@
-<h1>Cadastro de Imóvel</h1>
+<h1><%= t('.title') %></h1>
 
 <% if @property.errors.any? %>
   <ul>
@@ -10,11 +10,11 @@
 
 <%= form_with(model: @property) do |f| %>
   <div>
-    <%= f.label :title, 'Título' %>
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div>
-    <%= f.label :description, 'Descrição' %>
+    <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
   <div>

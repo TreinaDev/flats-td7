@@ -37,14 +37,13 @@ describe 'Visitor register property' do
     click_on 'Enviar'
 
     expect(page).to have_content('não pode ficar em branco', count: 5)
-    # expect(page).to have_content('Título não pode ficar em branco')
-    # expect(page).to have_content('Descrição não pode ficar em branco')
+    expect(page).to have_content('Título não pode ficar em branco')
+    expect(page).to have_content('Descrição não pode ficar em branco')
     # expect(page).to have_content('Quartos não pode ficar em branco')
     # expect(page).to have_content('Banheiros não pode ficar em branco')
     # expect(page).to have_content('Diária não pode ficar em branco')
     expect(Property.count).to eq(0)
   end
 
-  # TODO: verificar que rooms, daily_rate, bathrooms são numéricos
   # TODO: verificar que rooms, daily_rate, bathrooms são maiores que zero
 end
