@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Visitor register property' do
+describe 'Property Owner register property' do
   it 'successfully' do
     #Arrange
     property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
