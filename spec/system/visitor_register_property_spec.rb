@@ -3,9 +3,11 @@ require 'rails_helper'
 describe 'Visitor register property' do
   it 'successfully' do
     #Arrange
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     PropertyType.create!(name: 'Casa')
 
     #Act
+    login_as property_owner, scope: :property_owner
     visit root_path
     click_on 'Cadastrar Imóvel'
 
@@ -32,6 +34,9 @@ describe 'Visitor register property' do
   end
 
   it 'and must fill all fields' do
+    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
+
+    login_as property_owner, scope: :property_owner
     visit root_path
     click_on 'Cadastrar Imóvel'
     click_on 'Enviar'
