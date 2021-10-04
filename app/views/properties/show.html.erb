@@ -28,7 +28,8 @@
 
   <dt>Diária:</dt>
   <dd><%= number_to_currency(@property.daily_rate) %></dd>
-  
+  <dt>Imóvel de:</dt>
+  <dd><%= @property.property_owner.email %></dd>
 </dl>
 
 </div>

@@ -11,11 +11,17 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
+    @property.property_owner = current_property_owner
     if @property.save
       redirect_to @property
     else
       render :new
     end
+  end
+
+  def my_properties
+    # Filtrar somente os imóveis do property_owner logado
+    @properties = current_property_owner.properties
   end
 
   private

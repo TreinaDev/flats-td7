@@ -40,4 +40,15 @@ describe 'Property owner view own properties' do
     expect(page).not_to have_content 'Casa com piscina em Porto Alegre'
   end
 
+  it 'and has no properties yet' do
+    peter = PropertyOwner.create!(email: 'peter@parker.com.br', password: '123456789')
+
+    login_as peter, scope: :property_owner
+    visit root_path
+    click_on 'Meus Imóveis'
+
+    expect(page).to have_content 'Você ainda não cadastrou imóveis'
+    expect(page).to have_link('Cadastre seu primeiro imóvel agora', new_property_path)
+  end
+
 end
