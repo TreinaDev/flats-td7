@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe 'Property Owner register property' do
+  it 'must be signed in' do
+    # Act 
+    visit root_path
+    # Assert
+    expect(page).not_to have_link('Cadastrar Imóvel')
+  end
+
   it 'successfully' do
     #Arrange
     property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
