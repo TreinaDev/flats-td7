@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_06_155406) do
+ActiveRecord::Schema.define(version: 2021_10_06_183820) do
 
   create_table "properties", force: :cascade do |t|
     t.string "title"
@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(version: 2021_10_06_155406) do
     t.index ["reset_password_token"], name: "index_property_owners_on_reset_password_token", unique: true
   end
 
+  create_table "property_reservations", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "guests"
+    t.decimal "total_value"
+    t.integer "property_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["property_id"], name: "index_property_reservations_on_property_id"
+    t.index ["user_id"], name: "index_property_reservations_on_user_id"
+  end
+
   create_table "property_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -60,4 +73,6 @@ ActiveRecord::Schema.define(version: 2021_10_06_155406) do
 
   add_foreign_key "properties", "property_owners"
   add_foreign_key "properties", "property_types"
+  add_foreign_key "property_reservations", "properties"
+  add_foreign_key "property_reservations", "users"
 end
