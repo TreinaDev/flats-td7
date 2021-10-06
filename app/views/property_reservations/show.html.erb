@@ -7,5 +7,5 @@
   <dt>Quantidade de pessoas</dt>
   <dd><%= @property_reservation.guests %></dd>
   <dt>Valor total</dt>
-  <dd>R$ 400,00</dd>
+  <dd><%= number_to_currency @property_reservation.total_value %></dd>
 </dl>

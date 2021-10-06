@@ -4,12 +4,11 @@ class PropertyReservationsController < ApplicationController
   end
 
   def create
-    @property_reservation = PropertyReservation.new(property_reservation_params)
-    @property_reservation.user = current_user
+    @property_reservation = current_user.property_reservations.new(property_reservation_params)
     @property_reservation.property = Property.find(params[:property_id])
     @property_reservation.save
 
-    redirect_to @property_reservation, notice: 'Pedido de reserva enviado com sucesso'
+    redirect_to @property_reservation, notice: t('.success')
   end
 
   private

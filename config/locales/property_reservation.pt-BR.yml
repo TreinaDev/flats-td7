@@ -1,0 +1,5 @@
+---
+pt-BR:
+  property_reservations:
+    create:
+      success: 'Pedido de reserva enviado com sucesso'
