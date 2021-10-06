@@ -19,8 +19,14 @@
           <li><%= current_property_owner.email %></li>
           <li><%= link_to 'Logout', destroy_property_owner_session_path, method: :delete %></li>
         </ul>
+      <% elsif user_signed_in? %>
+        <ul>
+          <li><%= current_user.email %></li>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+        </ul>
       <% else %>
-        <p><%= link_to 'Entrar', new_property_owner_session_path %></p>
+        <p><%= link_to 'Entrar como proprietário', new_property_owner_session_path %></p>
+        <p><%= link_to 'Entrar como locador', new_user_session_path %></p>
       <% end %>
     </nav>
     <p><%= notice %></p>

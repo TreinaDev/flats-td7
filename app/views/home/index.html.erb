@@ -17,11 +17,7 @@
   <% if @properties.empty? %>
     <div><span>Nenhum imóvel disponível</span></div>
   <% end %>
-
   <% @properties.each do |p| %>
-    <%= link_to(p.title, p) %>
-
-    <%= p.description %>
-    Quartos: <%= p.rooms %>
+    <%= render p %>
   <% end %>
 </section>

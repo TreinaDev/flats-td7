@@ -1,0 +1,9 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user: 'Locador'
+    attributes:
+      user:
+        email: 'E-mail'
+        password: 'Senha'

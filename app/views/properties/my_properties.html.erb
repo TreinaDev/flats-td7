@@ -1,7 +1,12 @@
 <h1>Meus Imóveis</h1>
-<% @properties.each do |p| %>
-  <%= link_to(p.title, p) %>
 
-  <%= p.description %>
-  Quartos: <%= p.rooms %>
+<% if @properties.empty? %>
+  <div>
+    <p>Você ainda não cadastrou imóveis</p>
+    <p><%= link_to 'Cadastre seu primeiro imóvel agora', new_property_path %></p>
+  </div>
+<% else %>
+  <% @properties.each do |p| %>
+    <%= render p %>
+  <% end %>
 <% end %>
