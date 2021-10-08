@@ -1,5 +1,18 @@
 ---
 pt-BR:
+  
+  active_record:
+    errors:
+      models:
+        property_reservation:
+          attributes:
+            end_date:
+              greater_than_start_date: 'deve ser maior que a data início'
+    model:
+      property_reservation: 'Reserva'
+    attributes:
+      property_reservation:
+
   property_reservations:
     create:
       success: 'Pedido de reserva enviado com sucesso'

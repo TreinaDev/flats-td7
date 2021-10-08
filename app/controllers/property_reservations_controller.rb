@@ -11,6 +11,13 @@ class PropertyReservationsController < ApplicationController
     redirect_to @property_reservation, notice: t('.success')
   end
 
+  def accept
+    @property_reservation = PropertyReservation.find(params[:id])
+    @property_reservation.accepted!
+    redirect_to @property_reservation.property
+  end
+
+
   private
 
   def property_reservation_params

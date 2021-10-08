@@ -32,15 +32,38 @@
   <dd><%= @property.property_owner.email %></dd>
 </dl>
 
-<h3>Verificar datas</h3>
-<%= form_with model: [@property, @property_reservation] do |f| %>
-  <%= f.label :start_date, 'Data de início' %>
-  <%= f.date_field :start_date %>
-  <%= f.label :end_date, 'Data de término' %>
-  <%= f.date_field :end_date %>
-  <%= f.label :guests, 'Quantidade de pessoas' %>
-  <%= f.number_field :guests, step: 1, min: 1 %>
-  <%= f.submit 'Enviar Reserva' %>
+<% if property_owner_signed_in? && @property.property_owner == current_property_owner %>
+  <h3>Reservas</h3>
+  <% @property.property_reservations.each do |pr| %>
+    <div>
+      <h4>Reserva de <%= pr.user.email %></h4>
+      <dl>
+        <dt>Data de Início:</dt>
+        <dd><%= I18n.l(pr.start_date) %></dd>
+        <dt>Data de Saída:</dt>
+        <dd><%= I18n.l(pr.end_date) %></dd>
+        <dt>Total de Pessoas:</dt>
+        <dd><%= pr.guests %></dd>
+        <dt>Status:</dt>
+        <dd><%= I18n.t(pr.status) %></dd>
+      </dl>
+      
+      <%= link_to 'Aceitar Reserva', accept_property_reservation_path(pr.id), method: :post %>
+
+    </div>
+  <% end %>
+  
+<% elsif user_signed_in? %>
+  <h3>Reserve Agora</h3>
+  <%= form_with model: [@property, @property_reservation] do |f| %>
+    <%= f.label :start_date, 'Data de início' %>
+    <%= f.date_field :start_date %>
+    <%= f.label :end_date, 'Data de término' %>
+    <%= f.date_field :end_date %>
+    <%= f.label :guests, 'Quantidade de pessoas' %>
+    <%= f.number_field :guests, step: 1, min: 1 %>
+    <%= f.submit 'Enviar Reserva' %>
+  <% end %>
 <% end %>
 
 </div>

@@ -1,5 +1,8 @@
 ---
 pt-BR:
+  pending: 'Pendente'
+  accepted: 'Aceita'
+  rejected: 'Rejeitada'
   activerecord:
     models:
       property: 'Propriedade'

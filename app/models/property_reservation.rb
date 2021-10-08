@@ -6,6 +6,8 @@ class PropertyReservation < ApplicationRecord
   validate :end_date_greater_than_start_date
   validate :start_date_in_the_future
 
+  enum status: { pending: 5, accepted: 10, rejected: 20 }
+
   private
 
   def calculate_total_value
@@ -23,4 +25,5 @@ class PropertyReservation < ApplicationRecord
       errors.add(:start_date, 'não pode ser em datas passadas')
     end
   end
+
 end

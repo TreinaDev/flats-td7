@@ -5,6 +5,7 @@ RSpec.describe PropertyReservation, type: :model do
   describe '#valid?' do
     context 'should not be valid' do
       it 'start date greater than end date' do
+        # Arrange
         property_type = PropertyType.create!(name: 'Apartamento')
         property_owner = PropertyOwner.create!(email: 'john@doe.com.br', password: '123456')
         property = Property.create!(title: 'Apartamento Novo',
@@ -12,11 +13,15 @@ RSpec.describe PropertyReservation, type: :model do
                                 rooms: 3, bathrooms: 2, pets: true, daily_rate: 100,
                                 property_type: property_type, property_owner: property_owner)
         user = User.create!(email: 'peter@parker.com', password: '123454235432')
-
         reservation = PropertyReservation.new(start_date: 5.days.from_now, end_date: 2.days.from_now,
                                               guests: 2, property: property, user: user)
 
-        expect(reservation.valid?).to eq false
+        # Act
+        reservation.valid?
+        #expect(reservation.valid?).to eq false
+
+        # Assert
+        expect(reservation.errors[:end_date]).to include('deve ser maior que a data início')
       end
 
       it 'end date equal to start date' do

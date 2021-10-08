@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :properties, only: %i[index show new create] do
     get 'my_properties', on: :collection
-    resources :property_reservations, only: %i[create show], shallow: true
+    resources :property_reservations, only: %i[create show], shallow: true do
+      post 'accept', on: :member
+    end
   end
   resources :property_types, only: [:show]
 end
