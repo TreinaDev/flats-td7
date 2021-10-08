@@ -21,7 +21,7 @@
         </ul>
       <% elsif user_signed_in? %>
         <ul>
-          <li><%= current_user.email %></li>
+          <li><%= link_to current_user.email, my_profile_path %></li>
           <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
         </ul>
       <% else %>
