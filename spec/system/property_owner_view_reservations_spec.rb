@@ -11,7 +11,7 @@ describe 'Property owner view reservations' do
 
     andrew = User.create!(email: 'andrew@doe.com.br', password: '123456')
 
-    PropertyReservation.create!(start_date: '2021-10-09', end_date: '2021-10-12',
+    PropertyReservation.create!(start_date: 1.week.from_now, end_date: 2.weeks.from_now,
                                guests: 6, property: johns_property, user: andrew)
 
 
@@ -23,8 +23,8 @@ describe 'Property owner view reservations' do
     expect(page).not_to have_content 'Reserve Agora'
     expect(page).to have_content 'Reservas'
     expect(page).to have_content 'Reserva de andrew@doe.com.br'
-    expect(page).to have_content 'Data de Início: 09/10/2021'
-    expect(page).to have_content 'Data de Saída: 12/10/2021'
+    expect(page).to have_content "Data de Início: #{I18n.localize 1.week.from_now.to_date}"
+    expect(page).to have_content "Data de Saída: #{I18n.localize 2.weeks.from_now.to_date}"
     expect(page).to have_content 'Total de Pessoas: 6'
     expect(page).to have_content 'Status: Pendente'
   end
@@ -46,7 +46,7 @@ describe 'Property owner view reservations' do
 
     andrew = User.create!(email: 'andrew@doe.com.br', password: '123456')
 
-    PropertyReservation.create!(start_date: '2021-10-13', end_date: '2021-10-16',
+    PropertyReservation.create!(start_date: 1.week.from_now, end_date: 2.weeks.from_now,
                               guests: 6, property: janes_property, user: andrew)
 
 
@@ -56,8 +56,8 @@ describe 'Property owner view reservations' do
 
     expect(page).not_to have_content("Reserve Agora")
     expect(page).not_to have_content('Reserva de andrew@doe.com.br')
-    expect(page).not_to have_content('Data de Início: 13/10/2021')
-    expect(page).not_to have_content('Data de Saída: 16/10/2021')
+    expect(page).not_to have_content "Data de Início: #{I18n.localize 1.week.from_now.to_date}"
+    expect(page).not_to have_content "Data de Saída: #{I18n.localize 2.weeks.from_now.to_date}"
   end
 
   it 'and accept reservation' do
@@ -70,7 +70,7 @@ describe 'Property owner view reservations' do
 
     andrew = User.create!(email: 'andrew@doe.com.br', password: '123456')
 
-    PropertyReservation.create!(start_date: '2021-10-09', end_date: '2021-10-12',
+    PropertyReservation.create!(start_date: 1.week.from_now, end_date: 2.weeks.from_now,
                                guests: 6, property: johns_property, user: andrew)
 
 
@@ -83,8 +83,8 @@ describe 'Property owner view reservations' do
     expect(current_path).to eq property_path(johns_property)
     expect(page).to have_content 'Reservas'
     expect(page).to have_content 'Reserva de andrew@doe.com.br'
-    expect(page).to have_content 'Data de Início: 09/10/2021'
-    expect(page).to have_content 'Data de Saída: 12/10/2021'
+    expect(page).to have_content "Data de Início: #{I18n.localize 1.week.from_now.to_date}"
+    expect(page).to have_content "Data de Saída: #{I18n.localize 2.weeks.from_now.to_date}"
     expect(page).to have_content 'Total de Pessoas: 6'
     expect(page).to have_content 'Status: Aceita'
 

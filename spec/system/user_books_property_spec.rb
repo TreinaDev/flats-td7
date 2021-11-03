@@ -13,15 +13,15 @@ describe 'user books property' do
     login_as user, scope: :user
     visit root_path
     click_on property.title
-    fill_in 'Data de início', with: '10/10/2021'
-    fill_in 'Data de término', with: '12/10/2021'
+    fill_in 'Data de início', with: 1.week.from_now
+    fill_in 'Data de término', with: 2.weeks.from_now
     fill_in 'Quantidade de pessoas', with: '3'
     click_on 'Enviar Reserva'
 
-    expect(page).to have_content('10/10/2021')
-    expect(page).to have_content('12/10/2021')
+    expect(page).to have_content(I18n.localize 1.week.from_now.to_date)
+    expect(page).to have_content(I18n.localize 2.weeks.from_now.to_date)
     expect(page).to have_content(/3/)
-    expect(page).to have_content('R$ 200,00')
+    expect(page).to have_content('R$ 700,00')
     expect(page).to have_content('Pedido de reserva enviado com sucesso')
   end
 end
