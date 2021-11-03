@@ -3,28 +3,20 @@ require 'rails_helper'
 describe 'Visitor visit homepage' do
   it 'and view properties' do
     #Arrange => Preparar (os dados)
-    property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
-    property_type = PropertyType.create!(name: 'Casa')
-    Property.create!({ title: 'Casa com quintal em Copacabana', 
-                      description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, bathrooms: 2, daily_rate: 150,
-                      property_type: property_type, property_owner: property_owner
-                    })
+    create(:property, title: 'Apartamento em Copabacana',
+    description: 'Lindo apartamento na praia', rooms: 2)
 
-    Property.create!({ title: 'Cobertura em Manaus', 
-                      description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5, parking_slot: false, bathrooms: 2, daily_rate: 150,
-                      property_type: property_type, property_owner: property_owner
-                    })
+    create(:property, title: 'Cobertura em Manaus', 
+    description: 'Cobertura de 300m2, churrasqueira e sauna privativa', rooms: 5)
 
     #Act => Agir (executar a funcionalidade)
     visit root_path
 
     #Assert => Garantir (que algo aconteceu ou NAO aconteceu)
     # 2 imoveis -> casa em copacabana; apartamento em manaus
-    expect(page).to have_content("Casa com quintal em Copacabana")
-    expect(page).to have_content("Excelente casa, recém reformada com 2 vagas de garagem")
-    expect(page).to have_content("Quartos: 3")
+    expect(page).to have_content('Apartamento em Copabacana')
+    expect(page).to have_content('Lindo apartamento na praia' )
+    expect(page).to have_content("Quartos: 2")
     expect(page).to have_content("Cobertura em Manaus")
     expect(page).to have_content("Cobertura de 300m2, churrasqueira e sauna privativa")
     expect(page).to have_content("Quartos: 5")
