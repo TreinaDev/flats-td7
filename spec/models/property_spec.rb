@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Property do
+describe Property, type: :model do
   context 'validations' do
     context 'present' do
       let(:property) { subject }
