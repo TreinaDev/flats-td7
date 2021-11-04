@@ -2,18 +2,18 @@ require 'rails_helper'
 
 describe 'Property Owner register property' do
   it 'must be signed in' do
-    # Act 
+    # Act
     visit root_path
     # Assert
     expect(page).not_to have_link('Cadastrar Imóvel')
   end
 
   it 'successfully' do
-    #Arrange
+    # Arrange
     property_owner = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
     PropertyType.create!(name: 'Casa')
 
-    #Act
+    # Act
     login_as property_owner, scope: :property_owner
     visit root_path
     click_on 'Cadastrar Imóvel'
@@ -29,16 +29,16 @@ describe 'Property Owner register property' do
 
     click_on 'Enviar'
 
-    #Assert
+    # Assert
     expect(page).to have_content('Casa em Florianópolis')
     expect(page).to have_content('Ótima casa perto da UFSC')
-    expect(page).to have_content("Quartos: 3")
-    expect(page).to have_content("Banheiros: 2")
-    expect(page).to have_content("Aceita Pets: Sim")
-    expect(page).to have_content("Estacionamento: Sim")
-    expect(page).to have_content("Diária: R$ 200,00")
-    expect(page).to have_content("Tipo: Casa")
-    expect(page).to have_content("Imóvel de: jane@doe.com.br")
+    expect(page).to have_content('Quartos: 3')
+    expect(page).to have_content('Banheiros: 2')
+    expect(page).to have_content('Aceita Pets: Sim')
+    expect(page).to have_content('Estacionamento: Sim')
+    expect(page).to have_content('Diária: R$ 200,00')
+    expect(page).to have_content('Tipo: Casa')
+    expect(page).to have_content('Imóvel de: jane@doe.com.br')
   end
 
   it 'and must fill all fields' do

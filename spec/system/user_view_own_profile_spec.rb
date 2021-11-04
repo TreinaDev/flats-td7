@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User view own profile' do
-  it 'from menu' do 
+  it 'from menu' do
     user = User.create!(email: 'peter@doe.com.br', password: '123456789')
 
     visit root_path
@@ -12,7 +12,6 @@ describe 'User view own profile' do
       click_on 'Entrar'
     end
     click_on 'peter@doe.com.br'
-
 
     expect(page).to have_content 'Meu Perfil'
     expect(page).to have_content 'peter@doe.com.br'

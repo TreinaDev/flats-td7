@@ -15,15 +15,10 @@ class PropertyReservation < ApplicationRecord
   end
 
   def end_date_greater_than_start_date
-    if start_date >= end_date
-      errors.add(:end_date, 'deve ser maior que a data início')
-    end
+    errors.add(:end_date, 'deve ser maior que a data início') if start_date >= end_date
   end
 
   def start_date_in_the_future
-    if start_date < Date.today
-      errors.add(:start_date, 'não pode ser em datas passadas')
-    end
+    errors.add(:start_date, 'não pode ser em datas passadas') if start_date < Date.today
   end
-
 end

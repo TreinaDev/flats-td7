@@ -1,10 +1,9 @@
 FactoryBot.define do
   factory :property_owner do
     email { generate(:email) }
-    password { "12321312312312" }
+    password { '1234567890' }
   end
 end
-
 
 FactoryBot.define do
   sequence :email do |n|

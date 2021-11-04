@@ -17,7 +17,6 @@ class PropertyReservationsController < ApplicationController
     redirect_to @property_reservation.property
   end
 
-
   private
 
   def property_reservation_params

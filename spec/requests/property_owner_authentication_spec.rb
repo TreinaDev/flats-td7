@@ -8,7 +8,7 @@ describe 'Property Owner authentication' do
   end
 
   it 'cannot open new property form unless authenticated' do
-    #get '/properties/new'
+    # get '/properties/new'
     get new_property_path
 
     expect(response).to redirect_to(new_property_owner_session_path)

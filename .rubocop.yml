@@ -1,0 +1,12 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**/*'
+
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let']

@@ -18,14 +18,12 @@ describe 'user books property' do
     fill_in 'Quantidade de pessoas', with: '3'
     click_on 'Enviar Reserva'
 
-    expect(page).to have_content(I18n.localize 1.week.from_now.to_date)
-    expect(page).to have_content(I18n.localize 2.weeks.from_now.to_date)
+    expect(page).to have_content(I18n.localize(1.week.from_now.to_date))
+    expect(page).to have_content(I18n.localize(2.weeks.from_now.to_date))
     expect(page).to have_content(/3/)
     expect(page).to have_content('R$ 700,00')
     expect(page).to have_content('Pedido de reserva enviado com sucesso')
   end
-
-
 
   it 'and cancel' do
     property_type = PropertyType.create!(name: 'Apartamento')
@@ -46,5 +44,4 @@ describe 'user books property' do
 
     expect(page).to have_link 'Cancelar Reserva'
   end
-
 end
