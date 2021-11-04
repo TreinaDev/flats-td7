@@ -3,9 +3,8 @@ require 'rails_helper'
 describe 'Visitor visit homepage' do
   it 'and view properties' do
     #Arrange => Preparar (os dados)
-    create(:property, title: 'Apartamento em Copabacana',
-    description: 'Lindo apartamento na praia', rooms: 2)
-
+    first_property = create(:property, title: 'Apartamento em Copabacana',
+    description: FFaker::Lorem.paragraph, rooms: 2)
     create(:property, title: 'Cobertura em Manaus', 
     description: 'Cobertura de 300m2, churrasqueira e sauna privativa', rooms: 5)
 
@@ -15,7 +14,7 @@ describe 'Visitor visit homepage' do
     #Assert => Garantir (que algo aconteceu ou NAO aconteceu)
     # 2 imoveis -> casa em copacabana; apartamento em manaus
     expect(page).to have_content('Apartamento em Copabacana')
-    expect(page).to have_content('Lindo apartamento na praia' )
+    expect(page).to have_content(first_property.description )
     expect(page).to have_content("Quartos: 2")
     expect(page).to have_content("Cobertura em Manaus")
     expect(page).to have_content("Cobertura de 300m2, churrasqueira e sauna privativa")
