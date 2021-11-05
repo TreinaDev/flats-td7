@@ -3,6 +3,8 @@ class PropertyReservation < ApplicationRecord
   belongs_to :user
 
   before_save :calculate_total_value
+  before_create :generate_code
+  validates :code, uniqueness: true
   validate :end_date_greater_than_start_date
   validate :start_date_in_the_future
 
@@ -12,6 +14,11 @@ class PropertyReservation < ApplicationRecord
 
   def calculate_total_value
     self.total_value = (end_date - start_date).to_i * property.daily_rate
+  end
+
+  def generate_code
+    self.code = SecureRandom.alphanumeric(8).upcase
+    generate_code if PropertyReservation.exists?(code: code)
   end
 
   def end_date_greater_than_start_date

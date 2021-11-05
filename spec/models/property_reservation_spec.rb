@@ -2,6 +2,15 @@ require 'rails_helper'
 
 RSpec.describe PropertyReservation, type: :model do
   include ActiveSupport::Testing::TimeHelpers
+  it 'code must be uniq' do
+    reservation = create(:property_reservation)
+    allow(SecureRandom).to receive(:alphanumeric).and_return(reservation.code, 'ABCD1234')
+    other_reservation = create(:property_reservation)
+
+    expect(other_reservation).to be_valid
+    expect(other_reservation.code).to eq('ABCD1234')
+  end
+
   describe '#valid?' do
     context 'should not be valid' do
       it 'start date greater than end date' do
