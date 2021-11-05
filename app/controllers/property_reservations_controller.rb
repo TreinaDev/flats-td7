@@ -8,6 +8,10 @@ class PropertyReservationsController < ApplicationController
     @property = property = Property.find(params[:property_id])
     @property_reservation.property = Property.find(params[:property_id])
     @property_reservation.save
+    PropertyReservationMailer
+      .with(reservation: @property_reservation)
+      .notify_new_reservation
+      .deliver_now
     redirect_to @property_reservation, notice: t('.success')
   end
 
