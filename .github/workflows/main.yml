@@ -1,7 +1,7 @@
 name: Rails Pipeline
 
 env:
-  RUBY_VERSION: 2.7.2
+  RUBY_VERSION: 2.7.1
   NODE_VERSION: 12.18.1
   BUNDLER_VERSION: 2.1.4
 
