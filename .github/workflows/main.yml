@@ -1,0 +1,57 @@
+name: Rails Pipeline
+
+env:
+  RUBY_VERSION: 2.7.1
+  NODE_VERSION: 12.18.1
+  BUNDLER_VERSION: 2.1.4
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup System
+        run: sudo apt-get install -y libsqlite3-dev
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+         ruby-version: ${{ env.RUBY_VERSION }}
+  
+      - name: Bundle install
+        run: |
+          gem uninstall -aIx bundler
+          gem install bundler -v ${{ env.BUNDLER_VERSION }}
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Yarn Install
+        run: bin/yarn
+      
+      - name: Rspec
+        run: |
+          bundle exec rails db:prepare
+          bundle exec rspec
+          
+      - name: Rubocop
+        run: bundle exec rubocop -c .rubocop.yml
+      
+      - name: Audit
+        run: |
+          gem install bundler-audit
+          bundle-audit --update
